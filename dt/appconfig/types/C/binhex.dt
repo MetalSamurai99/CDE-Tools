@@ -1,0 +1,92 @@
+# Types and actions for macintosh files
+# tkld 11/1996
+
+DATA_ATTRIBUTES BINHEX
+{
+	ACTIONS	RunToAUFS,RunMcVert
+	ICON	hqx
+	IS_TEXT	false
+	NAME_TEMPLATE	%s.hqx
+	MIME_TYPE	application/mac-binhex40
+	DESCRIPTION	This file is a BinHex encoded Macintosh file. It is safe to mail \
+			but cannot be read directly on UNIX. You can transfer this file to \
+			a Macintosh, or use McVert to unpack the data and resource \
+			forks, or ToAUFS to unpack into an AUFS directory.
+}
+
+DATA_CRITERIA	BINHEX1
+{
+	DATA_ATTRIBUTES_NAME	BINHEX
+	MODE	f
+	NAME_PATTERN	*.hqx
+}
+
+ACTION RunMcVert
+{
+	LABEL	Run McVert
+	ARG_TYPE	BINHEX
+	TYPE	MAP
+	MAP_ACTION	McVert
+}
+
+ACTION RunToAUFS
+{
+	LABEL	Run ToAUFS
+	ARG_TYPE	BINHEX
+	TYPE	MAP
+	MAP_ACTION	ToAUFS
+}
+
+ACTION McVert
+{
+	LABEL 	McVert
+	ICON  	mcvert
+	ARG_COUNT 	0
+	TYPE	COMMAND
+	WINDOW_TYPE	PERM_TERMINAL
+	EXEC_STRING	sh -c ' \
+			mcvert "%(File)Arg_1"Filename"%" ; \
+			echo "\\n***Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The McVert action converts BinHex files to Macbinary files.
+}
+
+ACTION McVert
+{
+	LABEL 	McVert
+	ICON  	mcvert
+	ARG_COUNT 	1
+	TYPE	COMMAND
+	WINDOW_TYPE	PERM_TERMINAL
+	EXEC_STRING	sh -c ' \
+			mcvert "%Arg_1%" ; \
+			echo "\\n***Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The McVert action converts BinHex files to Macbinary files.
+}
+
+ACTION ToAUFS
+{
+	LABEL 	ToAUFS
+	ICON  	mcvert
+	ARG_COUNT 	0
+	TYPE	COMMAND
+	WINDOW_TYPE	PERM_TERMINAL
+	EXEC_STRING	sh -c ' \
+			toaufs "%(File)Arg_1"Filename"%" ; \
+			echo "\\n***Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The ToAUFS action converts BinHex files to CAP encoded files in a \
+			CAP AUFS directory (such as .macfiles).
+}
+
+ACTION ToAUFS
+{
+	LABEL 	ToAUFS
+	ICON  	mcvert
+	ARG_COUNT 	*
+	TYPE	COMMAND
+	WINDOW_TYPE	PERM_TERMINAL
+	EXEC_STRING	sh -c ' \
+			toaufs "%Args%" ; \
+			echo "\\n***Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The ToAUFS action converts BinHex files to CAP encoded files in a \
+			CAP AUFS directory (such as .macfiles).
+}

@@ -1,0 +1,15 @@
+######################################################################
+# Wordperfect Actions and types.
+# tkld 10/96
+######################################################################
+
+ACTION WordPerfect
+{
+     LABEL         WordPerfect
+     TYPE          COMMAND
+     EXEC_STRING   xwp
+     ICON          WordPerfect
+     WINDOW_TYPE   NO_STDIO
+     DESCRIPTION   Run the WordPerfect wordprocessor.
+}
+

@@ -1,0 +1,163 @@
+#!/usr/dt/bin/dtksh
+# dtformat.sh
+# Created Mon Nov  4 1996 by Kevin Davidson tkld@cogsci.ed.ac.uk
+# $Id$
+# $Log$
+
+ExitDtformat()
+{
+    exit 0
+}
+
+NoNameError()
+{
+    XmCreateErrorDialog ERROR_DIALOG $TOPLEVEL noName \
+	okLabelString:OK \
+	messageString:"You must supply an 11 character name..."
+    XmMessageBoxGetChild CANCEL_BTN $ERROR_DIALOG DIALOG_CANCEL_BUTTON
+    XmMessageBoxGetChild HELP_BTN $ERROR_DIALOG DIALOG_HELP_BUTTON
+    XtUnmanageChildren $CANCEL_BTN $HELP_BTN
+
+    XtSetValues $(XtParent "-" $ERROR_DIALOG) title:Error
+    XtManageChildren $ERROR_DIALOG
+}
+
+NoFloppyError()
+{
+    XmCreateErrorDialog FERROR_DIALOG $TOPLEVEL noFloppy \
+	okLabelString:OK \
+	messageString:"This workstation has no floppy disk drive."
+    XmMessageBoxGetChild CANCEL_BTN $FERROR_DIALOG DIALOG_CANCEL_BUTTON
+    XmMessageBoxGetChild HELP_BTN $FERROR_DIALOG DIALOG_HELP_BUTTON
+    XtUnmanageChildren $CANCEL_BTN $HELP_BTN
+
+    XtSetValues $(XtParent "-" $FERROR_DIALOG) title:Error
+    XtManageChildren $FERROR_DIALOG
+}
+
+DoFormat()
+{
+    XtGetValues $DSIZE menuHistory:DISK_VALUE
+
+    XmTextGetString DISKNAME_VALUE $DNAME 
+
+    case "$DISK_VALUE" in
+    "$HIGHD")
+	DENSITY="-H"
+	;;
+    "$DOUBLED")
+	DENSITY="-D"
+	;;
+    "$EXTENDEDD")
+        DENSITY="-E"
+	;;
+    esac
+
+    if [ "$DISKNAME_VALUE" = "UNTITLED" ] ; then
+	NoNameError
+    else
+	fdformat -q -d $DENSITY -b $DISKNAME_VALUE
+    fi
+    volcheck
+    dtaction Open /floppy/$DISKNAME_VALUE
+    exit 0
+}
+
+#### Create Main UI
+
+XtInitialize TOPLEVEL dtformat Dtformat "$0" "$@"
+XtSetValues $TOPLEVEL allowShellResize:False
+XtSetValues $TOPLEVEL title:"Format Floppy"
+
+XtCreateManagedWidget FORM form XmForm $TOPLEVEL
+
+XtCreateManagedWidget LABEL label XmLabel $FORM \
+    topAttachment:ATTACH_FORM \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM \
+    labelString:"Format Floppy Disk"
+
+XmCreatePulldownMenu PANE $FORM pane 
+XtCreateManagedWidget HIGHD highd XmPushButton $PANE \
+         labelString:"High Density [1.44Mb]" 
+XtCreateManagedWidget DOUBLED doubled XmPushButton $PANE \
+         labelString:"Double Density [720k]" 
+XtCreateManagedWidget EXTENDEDD extendedd XmPushButton $PANE \
+         labelString:"Extended Density [2.88Mb]" 
+
+XmCreateOptionMenu DSIZE $FORM commandType \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$LABEL \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM \
+    labelString:"Disk Density:" \
+    menuHistory:$HIGHD \
+    subMenuId:$PANE \
+    navigationType:EXCLUSIVE_TAB_GROUP
+
+XtManageChildren $DSIZE
+
+XtCreateManagedWidget NAMELABEL nameLabel XmLabel $FORM \
+         topAttachment:ATTACH_WIDGET \
+	 topWidget:$DSIZE \
+         topOffset:20 \
+         leftAttachment:ATTACH_FORM \
+         leftOffset:20 \
+         labelString:"Disk Name:"
+
+XtCreateManagedWidget DNAME dname XmText $FORM \
+         topAttachment:ATTACH_OPPOSITE_WIDGET \
+         topWidget:$NAMELABEL \
+         topOffset:-7 \
+         leftAttachment:ATTACH_WIDGET \
+         leftWidget:$NAMELABEL \
+         leftOffset:10 \
+         rightAttachment:ATTACH_FORM \
+         rightOffset:10 \
+	 value:"UNTITLED" \
+         navigationType:EXCLUSIVE_TAB_GROUP
+
+XtCreateManagedWidget SEP sep XmSeparator $FORM \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$DNAME \
+    topOffset:10 \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM
+
+XtCreateManagedWidget EXIT pb XmPushButton $FORM \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$SEP \
+    topOffset:10 \
+    leftAttachment:ATTACH_FORM \
+    bottomAttachment:ATTACH_FORM \
+    bottomOffset:10 \
+    labelString:"Cancel" \
+    activateCallback:ExitDtformat \
+    navigationType:EXCLUSIVE_TAB_GROUP
+
+XtCreateManagedWidget FORMAT pb XmPushButton $FORM \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$SEP \
+    topOffset:10 \
+    leftAttachment:ATTACH_WIDGET \
+    leftWidget:$EXIT \
+    bottomAttachment:ATTACH_FORM \
+    bottomOffset:10 \
+    rightAttachment:ATTACH_FORM \
+    labelString:"Format" \
+    activateCallback:DoFormat \
+    navigationType:EXCLUSIVE_TAB_GROUP
+
+XtSetValues $FORM \
+    defaultButton:$EXIT \
+    initialFocus:$DNAME
+
+XtRealizeWidget $TOPLEVEL
+
+if [ ! -d "/floppy" ]; then
+    NoFloppyError
+fi
+
+XtMainLoop
+
+

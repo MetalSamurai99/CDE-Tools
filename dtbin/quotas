@@ -1,0 +1,64 @@
+#!/usr/local/bin/perl --  # -*-Perl-*-
+'di';
+'ig00';
+# quota.pl	-- Kevin Davidson
+#
+# $Log$
+$RCSHEADER = '$Header$';	#'
+'$Revision$'  =~ /^\$\w+:\s+([.1234567890]+)\s+\$$/;	#'
+$VERSION = $1;
+
+-d "/net/home144";
+
+open(PIPE,"/usr/sbin/quota -v|") || die "quota: $!\n";
+while (<PIPE>) {
+  if (m%^[^/]%) {
+    print $_;
+    next;
+  }
+  $_ .= <PIPE> if /^\S+\s*$/;
+  chop;
+  m%([^\s]+\s+)(.+)$%;
+  $vals = $2;
+  $part = $1;
+
+  $key{$vals} = $part unless $key{$vals};
+  $key{$vals} = $part if m%^/net%;
+  if ( $part =~ m%$ENV{'HOME'}% ) {
+    $homevals= $vals;
+    $homepart= $part;
+  }
+}
+close(PIPE);
+
+$key{$homevals} = $homepart;
+
+foreach $key (keys %key) {
+  print "$key{$key}$key\n";
+}
+
+########################################################
+
+	# These next few lines are legal in both Perl and Nroff.
+
+.00;		# finish .ig
+ 
+'di		\" finish diversion--previous line must be blank
+.nr nl 0-1	\" fake up transition to first page again
+.nr % 0		\" start at page 1
+'; __END__	#### From here on it's a standard manual page ####
+.TH QUOTA 1 "Thu Jan 18 1996" "Centre for Cognitive Science, University of Edinburgh"
+.SH NAME
+quota \- Remove automounter cruft from quota output
+.SH SYNOPSIS
+.B quota [options] [files]
+.SH DESCRIPTION
+.SH OPTIONS
+.SH ENVIRONMENT
+.SH EXAMPLES
+.SH FILES
+.SH AUTHOR
+Kevin Davidson tkld@cogsci.ed.ac.uk
+.SH SEE ALSO
+.SH DIAGNOSTICS
+.SH BUGS

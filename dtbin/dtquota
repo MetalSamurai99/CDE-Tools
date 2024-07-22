@@ -1,0 +1,64 @@
+#!/usr/dt/bin/dtksh
+# Display the user's quota in a window
+# tkld 27/9/96
+
+ExitDtquota()
+{
+    exit 0
+}
+
+#### Create Main UI
+
+XtInitialize TOPLEVEL dtquota Dtquota "$0" "$@"
+XtSetValues $TOPLEVEL allowShellResize:True
+
+XtCreateManagedWidget FORM form XmForm $TOPLEVEL
+
+XtCreateManagedWidget LABEL label XmLabel $FORM \
+    topAttachment:ATTACH_FORM \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM \
+    labelString:"File Quota"
+
+XmCreateScrolledText TEXT $FORM text \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$LABEL \
+    topOffset:20 \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM \
+    columns:80 \
+    rows:8 \
+    editMode:MULTI_LINE_EDIT
+
+XmTextSetString $TEXT "`/usr/local/bin/quotas`"
+XmTextSetEditable $TEXT 0
+
+XtManageChild $TEXT
+
+XtCreateManagedWidget SEP sep XmSeparator $FORM \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$TEXT \
+    topOffset:10 \
+    leftAttachment:ATTACH_FORM \
+    rightAttachment:ATTACH_FORM
+
+XtCreateManagedWidget EXIT pb XmPushButton $FORM \
+    topAttachment:ATTACH_WIDGET \
+    topWidget:$SEP \
+    topOffset:10 \
+    leftAttachment:ATTACH_FORM \
+    leftOffset:170 \
+    rightAttachment:ATTACH_FORM \
+    rightOffset:170 \
+    bottomAttachment:ATTACH_FORM \
+    bottomOffset:10 \
+    labelString:"Close" \
+    activateCallback:ExitDtquota
+
+XtSetValues $FORM \
+    defaultButton:$EXIT \
+    initialFocus:$EXIT
+
+XtRealizeWidget $TOPLEVEL
+
+XtMainLoop

@@ -1,0 +1,37 @@
+/* XPM */
+static char * Emacs_s_pm[] = {
+/* width height ncolors cpp [x_hot y_hot] */
+"24 24 7 1 0 0",
+/* colors */
+" 	s none	m none	c none",
+".	c #F4F4A4A46060",
+"X	s iconColor1	m black	c black",
+"o	s iconColor2	m white	c white",
+"O	c #BEBEBEBEBEBE",
+"+	s iconColor5	m black	c blue",
+"@	c #8B8B45451313",
+/* pixels */
+"                        ",
+"                  .     ",
+"                   .X   ",
+"     .        X     ..  ",
+"    .    XX.X...X    .X ",
+"   X.   X........X  X.X ",
+"  X.   X..XX...XXXXX..X ",
+"  ..  X...XoXooXXoXXXX  ",
+"  ..XX.X.XXoooooXXooooo ",
+"  X..XX.XXoXXOOOOXX  XX ",
+"  XX..XXoXXoXXXOOOX     ",
+"    XXooXoX++oXOOOX     ",
+"    ooXXoXooXOOOOOX     ",
+"    o XoooooXXOOOOOX    ",
+"     XooXXXooooOOOOX    ",
+"     XoXXoXoXoooOOOO    ",
+"     XOooooooXXXXOX@X   ",
+"     XOooXXXXXX@@XXXX   ",
+"     XOoXoXoXoX@X@@X    ",
+"      XOoXoXXXXXX@@X    ",
+"      XOOoXoXoXX@@@X    ",
+"       XXOOXXoXXXXX     ",
+"        XXOOXX          ",
+"          XXX           "};

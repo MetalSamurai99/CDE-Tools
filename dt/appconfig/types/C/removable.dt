@@ -1,0 +1,41 @@
+# /etc/dt/appconfig/types/C/removable.dt
+# "Richard L. Hamilton" <rlhamil@mindwarp.smart.net>
+
+set DtDbVersion=1.0
+ACTION EjectFloppy
+{
+	LABEL           Eject Floppy
+	ICON            floppy
+	TYPE            COMMAND
+	WINDOW_TYPE     NO_STDIO
+	EXEC_STRING 	eject floppy
+	DESCRIPTION	Eject any floppy in the floppy disk drive.
+}
+ACTION EjectCDROM
+{
+	LABEL           Eject CD-ROM
+	ICON            cdrom
+	TYPE            COMMAND
+	WINDOW_TYPE     NO_STDIO
+	EXEC_STRING 	eject cdrom
+	DESCRIPTION	Eject the cdrom from the drive.
+}
+ACTION CheckFloppy
+{
+	LABEL           Check for Floppy
+	ICON            flopdrv
+	TYPE            COMMAND
+	WINDOW_TYPE     NO_STDIO
+	EXEC_STRING 	dtfloppy
+	DESCRIPTION	After inserting a floppy disk, run the CheckFloppy action \
+			to alert the Volume Manager to changes and open a File manager window.
+}
+ACTION	FormatFloppy
+{
+	LABEL	Format Floppy
+	ICON	floppy
+	TYPE	COMMAND
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	dtformat
+	DESCRIPTION	Format a floppy disk.
+}

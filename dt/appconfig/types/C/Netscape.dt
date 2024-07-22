@@ -1,0 +1,58 @@
+# Next entry is copied from /usr/dt/appconfig/types/C/datatypes.dt
+# in order to change the ACTION and ICON attributes.
+#
+DATA_ATTRIBUTES HTML
+{
+        ACTIONS         Open,OpenInNetscape,Print
+        ICON            Html
+        IS_TEXT         true
+        NAME_TEMPLATE   %s.html
+        MIME_TYPE       text/html
+        DESCRIPTION     This file is a text file containing Hyper-Text \
+                        Markup Language from the World Wide Web.  Its
+data \
+                        type is named HTML.  HTML files have names
+ending \
+                        with '.html' , or contain the characters
+"<HTML>" \
+                        or "<html>".  
+}
+
+ACTION OpenInNetscape
+{
+  LABEL         Open In Netscape
+  ARG_TYPE      HTML
+  TYPE          MAP
+  MAP_ACTION    Netscape
+}
+
+ACTION Netscape
+# Netscape-1
+{
+  LABEL         Netscape
+  ICON          Netscape
+  ARG_COUNT     0
+  TYPE          COMMAND
+  WINDOW_TYPE   NO_STDIO
+  EXEC_STRING   netscape
+  DESCRIPTION   The Netscape (Netscape) action starts the Netscape \
+                Navigator Web browser. Use it to surf the Web. Drop a \
+                file with type HTML onto it and that file will be loaded.
+}
+
+ACTION Netscape
+# Netscape-2
+{
+  LABEL         Netscape
+  ICON          Netscape
+  ARG_TYPE      HTML
+  ARG_COUNT     1
+  TYPE          COMMAND
+  WINDOW_TYPE   NO_STDIO
+  EXEC_STRING   netscape -remote "openFile(%Arg_1%)"
+  DESCRIPTION   The Netscape (Netscape) action starts the Netscape \
+                Navigator Web browser. Use it to surf the Web. Drop a \
+                file with type HTML onto it and that file will be loaded.
+}
+
+

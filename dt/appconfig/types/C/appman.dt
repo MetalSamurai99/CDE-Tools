@@ -1,0 +1,70 @@
+# App manager icons for folders etc.
+# tkld 11/96
+
+DATA_ATTRIBUTES CSAPPS_APPGROUP
+{
+        ACTIONS         OpenInPlace,OpenNewView,Print
+        ICON		Dtadskt
+	LABEL		CogSci_Apps
+        MEDIA           FILE_NAME
+        MOVE_TO_ACTION  FILESYSTEM_MOVE
+        COPY_TO_ACTION  FILESYSTEM_COPY
+        LINK_TO_ACTION  FILESYSTEM_LINK
+	DESCRIPTION	Double-click this icon to open the \
+                        Cogsci_Apps application group.
+}
+DATA_CRITERIA CSAPPS_APPGROUP1
+{
+	DATA_ATTRIBUTES_NAME CSAPPS_APPGROUP
+	MODE		d
+	PATH_PATTERN	*/appmanager/*/CogSci_Apps
+}
+ACTION Open
+{
+        LABEL           Open
+        ARG_TYPE        CSAPPS_APPGROUP
+        TYPE            MAP
+        MAP_ACTION      OpenAppGroup
+}
+ACTION Print
+{
+        LABEL           Print
+        ARG_TYPE        CSAPPS_APPGROUP
+        TYPE            MAP
+        MAP_ACTION      PrintAppGroup
+}
+
+#############################################################
+
+DATA_ATTRIBUTES CSINFO_APPGROUP
+{
+        ACTIONS         OpenInPlace,OpenNewView,Print
+	ICON		Dtainfo
+	LABEL		CogSci_Info
+        MEDIA           FILE_NAME
+        MOVE_TO_ACTION  FILESYSTEM_MOVE
+        COPY_TO_ACTION  FILESYSTEM_COPY
+        LINK_TO_ACTION  FILESYSTEM_LINK
+	DESCRIPTION	Double-click this icon to open the CogSci Info \
+                        application group.
+}
+DATA_CRITERIA CSINFO_APPGROUP1
+{
+	DATA_ATTRIBUTES_NAME CSINFO_APPGROUP
+	MODE		d
+	PATH_PATTERN	*/appmanager/*/CogSci_Info
+}
+ACTION Open
+{
+        LABEL           Open
+        ARG_TYPE        CSINFO_APPGROUP
+        TYPE            MAP
+        MAP_ACTION      OpenAppGroup
+}
+ACTION Print
+{
+        LABEL           Print
+        ARG_TYPE        CSINFO_APPGROUP
+        TYPE            MAP
+        MAP_ACTION      PrintAppGroup
+}

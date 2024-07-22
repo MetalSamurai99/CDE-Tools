@@ -1,0 +1,36 @@
+/* XPM */
+static char * xdvi_s_pm[] = {
+/* width height ncolors cpp [x_hot y_hot] */
+"24 24 6 1 -1 -1",
+/* colors */
+" 	s background	m black	c #949494949494",
+".	s iconColor1	m black	c black",
+"X	s iconColor5	m black	c blue",
+"o	s iconColor2	m white	c white",
+"O	s iconGray8	m black	c #212121212121",
+"+	s iconGray2	m white	c #bdbdbdbdbdbd",
+/* pixels */
+"                        ",
+" .. .  ...  ..  . ....  ",
+"  ..   .. . ..  .  ..   ",
+"  ...  .. .  ...   ..   ",
+" .  .. ...    ..  ....  ",
+"                        ",
+"                        ",
+"              XXX       ",
+"            XXXXXXX     ",
+"            XXoooXX     ",
+"  oooooooooXXooOOoXXo   ",
+"  oOooOo+OoXXoOoOoXXo   ",
+"  o++oOooOoXXooOOoXXo   ",
+"  ooooooooooXXoooXXoo   ",
+"  oOoOOooooXXXXXXXXoo   ",
+"  oOo+ooOoX.XoXXXoooo   ",
+"  oooooooXXXooooooooo   ",
+"  oOOoOoX.XoO+oOo++oo   ",
+"  oO+ooXXXoo+Oo+oOooo   ",
+"  ooooX.Xoooooooooooo   ",
+"  oOOoXXo+Oo+o++o+Ooo   ",
+"  ooOooooOOo+OoooO+oo   ",
+"  ooooooooooooooooooo   ",
+"  ooooooooooooooooooo   "};

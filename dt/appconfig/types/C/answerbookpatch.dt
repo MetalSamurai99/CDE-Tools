@@ -1,0 +1,19 @@
+ACTION OWanswerbook
+{
+        LABEL           AnswerBook
+        ICON            OWanswerbook
+        TYPE            COMMAND
+        WINDOW_TYPE     NO_STDIO
+        EXEC_STRING     sh -c '/usr/openwin/bin/answerbook 2>&1 ;\
+                        if [ \$? -ne 0 ] ; then \
+                          /usr/dt/bin/dterror.ds \
+                           "AnswerBook failed to start.\\n\\n\
+                           Contact your system administrator\\n\
+                           for assistance, or consult the\\n\
+                           Solaris AnswerBook Administration Guide\\n\
+                           for more information." \
+                           "AnswerBook Error" \
+                           "OK" ; \
+                        fi'
+}
+

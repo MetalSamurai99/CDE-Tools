@@ -1,0 +1,19 @@
+# Action for changing password
+# tkld 10/96
+
+ACTION Passwd
+{
+	LABEL Change Password
+	ICON Dtkey
+	TYPE COMMAND
+	ARG_COUNT 0
+	WINDOW_TYPE PERM_TERMINAL
+	EXEC_STRING sh -c ' \
+		passwd ; \
+		echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION The Passwd action allows you to change your login password. \
+	Remember to keep your password secret and not to choose a word from any \
+	dictionary, birthday, car registration etc. Make sure your password is \
+	at least 6 characters long and uses upper and lower case letters as well \
+	as numbers.
+}

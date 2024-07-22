@@ -1,0 +1,33 @@
+#
+# @(#)wabi_appgroup.dt	1.1 - 96/01/16
+# Copyright 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+
+DATA_ATTRIBUTES    MSWindows_Apps_Appgroup
+{
+     ACTIONS       OpenInPlace,OpenNewView,Print
+     ICON          wabi_appgroup
+     DESCRIPTION   Double-click this icon to open the MSWindows_Apps application group.
+}
+
+DATA_CRITERIA    MSWindows_Apps_AppgroupCriteria1
+{
+     DATA_ATTRIBUTES_NAME  MSWindows_Apps_Appgroup
+     MODE                  d
+     PATH_PATTERN          */MSWindows_Apps
+}
+
+
+ACTION Open
+{
+     ARG_TYPE      MSWindows_Apps_Appgroup
+     TYPE          MAP
+     MAP_ACTION    OpenAppGroup
+}
+
+ACTION Print
+{
+     ARG_TYPE      MSWindows_Apps_Appgroup
+     TYPE          MAP
+     MAP_ACTION    PrintAppGroup
+}

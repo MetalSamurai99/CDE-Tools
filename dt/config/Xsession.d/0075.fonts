@@ -1,0 +1,11 @@
+#!/bin/ksh
+# Append CogSci local fonts to end of fontpath
+# Only use fontserver for Xterminals
+
+case "${DISPLAY}" in
+	:*|unix:*)
+		xset fp+ /usr/local/lib/X11/fonts/misc,/usr/local/lib/X11/fonts/Type1
+		;;
+	*)
+		xset fp+ tcp/`uname -n`:7100
+esac

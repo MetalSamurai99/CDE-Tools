@@ -1,0 +1,57 @@
+# Actions for Ghostview
+# tkld 10/96
+# Postscript files and types already described in CDE default files.
+
+# Modify standard attributes 
+DATA_ATTRIBUTES POSTSCRIPT
+{
+        ACTIONS         Open,Print,OpenInGhostview
+        ICON		Dtps
+        NAME_TEMPLATE	%s.ps
+        MIME_TYPE	application/postscript
+        SUNV3_TYPE	postscript-file
+        DESCRIPTION     This file contains postscript data. Its data type \
+                        is named PS.  PS file have names ending with '.ps' \
+                        or '.PS', or contain the characters "%!".
+}
+
+ACTION Ghostview
+{
+	LABEL Ghostview
+	ICON	ghostview
+	TYPE	COMMAND
+	ARG_COUNT	0
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	ghostview
+	DESCRIPTION	Ghostview is a PostScript file previewer for Xterminals. \
+	Drop a PostScript file on the application to view it.
+}
+ACTION Ghostview
+{
+	LABEL Ghostview
+	ICON	ghostview
+	TYPE	COMMAND
+	ARG_COUNT	1
+	ARG_TYPE	POSTSCRIPT
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	ghostview "%Arg_1%"
+	DESCRIPTION	Ghostview is a PostScript file previewer for Xterminals. \
+	Drop a PostScript file on the application to view it.
+}
+
+ACTION OpenInGhostview
+{
+	TYPE MAP
+	LABEL Open in Ghostview
+	ARG_TYPE	POSTSCRIPT
+	MAP_ACTION	Ghostview
+}
+
+# Uncomment this to override the DPS based postscript previewer.
+#ACTION Open
+#{
+#	TYPE MAP
+#	LABEL Open
+#	ARG_TYPE	POSTSCRIPT
+#	MAP_ACTION	Ghostview
+#}

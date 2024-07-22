@@ -1,0 +1,77 @@
+# Data types and actions for .dvi files and Xdvi
+# tkld 10/96
+DATA_ATTRIBUTES DVI
+{
+        ACTIONS         Open,Print
+        ICON            dvi
+        IS_TEXT         false
+        NAME_TEMPLATE   %s.dvi
+        MIME_TYPE       application/x-dvi
+        DESCRIPTION     This file is a binary file containing DeVice Independent \
+                        data, produced by LaTeX.  \
+			Its data type is named DVI.  DVI files have names ending \
+                        with '.dvi'.
+}
+
+DATA_CRITERIA DVI1
+{
+	DATA_ATTRIBUTES_NAME	DVI
+	MODE	f
+	NAME_PATTERN	*.dvi
+}
+
+ACTION Open
+{
+	LABEL Open
+	ARG_TYPE	DVI
+	TYPE	MAP
+	MAP_ACTION	Xdvi
+}
+
+ACTION Print
+{
+	LABEL Print
+	ARG_TYPE	DVI
+	TYPE MAP
+	MAP_ACTION	Dvips 
+}
+
+
+ACTION Xdvi
+{
+  LABEL         Xdvi
+  ICON          xdvi
+  ARG_COUNT     0
+  TYPE          COMMAND
+  WINDOW_TYPE   NO_STDIO
+  EXEC_STRING   xdvi
+  DESCRIPTION   The Xdvi action starts the Xdvi previewer.\
+		Drop a file with type DVI onto it and that file will be loaded.
+}
+
+ACTION Xdvi
+{
+  LABEL         Xdvi
+  ICON          xdvi
+  ARG_TYPE      DVI
+  ARG_COUNT     1
+  TYPE          COMMAND
+  WINDOW_TYPE   NO_STDIO
+  EXEC_STRING   xdvi "%Arg_1%"
+  DESCRIPTION   The Xdvi action starts the Xdvi previewer.\
+		Drop a file with type DVI onto it and that file will be loaded.
+}
+
+
+ACTION Dvips
+{
+  LABEL	Dvips
+  ARG_TYPE DVI
+  ARG_COUNT	1
+  TYPE COMMAND
+  WINDOW_TYPE PERM_TERMINAL
+  EXEC_STRING sh -c ' \
+		dvips "%Arg_1%" ; \
+		echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+  DESCRIPTION The Dvips action prints the dvi file with dvips.
+}

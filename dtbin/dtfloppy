@@ -1,0 +1,10 @@
+#!/bin/sh
+# Stop gap measure for CDE 1.0.x
+# Real removeable media support will be in CDE 1.1
+# tkld@cogsci.ed.ac.uk
+volcheck
+if [ ! -h /floppy/floppy0 ] ; then
+	dterror.ds 'No floppy disk in drive' 'Error' 'OK'
+	exit 1
+fi
+dtaction Open /floppy/floppy0

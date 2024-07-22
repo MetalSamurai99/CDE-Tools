@@ -1,0 +1,4 @@
+#!/bin/ksh
+# Show motd (CDE doesn't have this built in!)
+
+(sleep 75 ; dtmotd ; xquota) &

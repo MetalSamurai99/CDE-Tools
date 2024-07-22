@@ -1,0 +1,20 @@
+!!######################################################################
+!!
+!!   Xresources.cogsci
+!!
+!!   Configuration file for the Old CogSci alternate desktop resources 
+!!
+!!   tkld 24/7/96
+!!   Requires crest.[pb]m in /etc/dt/appconfig/icons/C
+!!
+!!######################################################################
+!!
+!!  This file used by the Solaris Desktop Login manager
+
+
+Dtlogin*altDtsIncrement:	True
+
+Dtlogin*altDtName:	Old CogSci Xsession
+Dtlogin*altDtKey:	/usr/X11R6/bin/twm
+Dtlogin*altDtStart:	/usr/local/share/X11R6/xdm/Xsession
+Dtlogin*altDtLogo:	crest

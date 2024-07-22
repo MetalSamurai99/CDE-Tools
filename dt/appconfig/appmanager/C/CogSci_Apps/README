@@ -1,0 +1,28 @@
+			 CogSci Applications
+
+      Created August 1996 Kevin Davidson <tkld@cogsci.ed.ac.uk>
+     Please report problems or mistakes to <help@cogsci.ed.ac.uk>
+
+Running Applications
+
+ To run one of these applications, just double click on the icon in
+the Application Manager window, or drag a document file from a File
+Manager Window onto the icon.
+
+Easier Access
+
+ If you use applications (or documents) frequently, you can put them
+on the workspace. Press the right button on the icon to bring up
+a menu and choose ``Put in Workspace'', or drag the icon to a clear
+space on the Workspace. You can still drag documents to the new icon,
+or double click to launch the application.
+
+ Alternatively, you can add the application to one of the Front Panel
+pop up menus. Click on the arrow tab to bring up the menu, then drag
+the application to the Install Icon drop target. If the Front Panel
+section you want the application to appear in does not have a pop up
+menu, then press the right mouse button and choose ``Add Subpanel''.
+
+
+ See the built in CDE help for more information on the Application
+Manager and the Front Panel.

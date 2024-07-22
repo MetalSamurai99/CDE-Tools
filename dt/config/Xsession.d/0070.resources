@@ -1,0 +1,3 @@
+#!/bin/ksh
+# Load resources from standard CogSci location
+/usr/openwin/bin/xrdb -merge /usr/local/share/X11R6/Xdefaults

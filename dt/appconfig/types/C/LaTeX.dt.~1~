@@ -1,0 +1,59 @@
+# Data types and actions for LaTeX files
+# tkld 10/96
+DATA_ATTRIBUTES TEX
+{
+        ACTIONS         Open,Print,RunLaTeX
+        ICON            tex
+        IS_TEXT         true
+        NAME_TEMPLATE   %s.tex
+        MIME_TYPE       application/x-tex
+        DESCRIPTION     This file is a text file containing LaTeX \
+                        Text.  Its data type is named TEX.  TEX files have names ending \
+                        with '.tex'.
+}
+
+DATA_CRITERIA TEX1
+{
+	DATA_ATTRIBUTES_NAME	TEX
+	MODE	f
+	NAME_PATTERN	*.tex
+}
+
+ACTION RunLaTeX
+{
+	LABEL	Run LaTeX
+	ARG_TYPE	TEX
+	TYPE	MAP
+	MAP_ACTION	LaTeX
+}
+
+ACTION LaTeX
+{
+  LABEL         LaTeX
+  ICON          latex
+  ARG_COUNT     0
+  TYPE          COMMAND
+  WINDOW_TYPE   PERM_TERMINAL
+  EXEC_STRING   sh -c ' \
+		latex "%(File)Arg_1"Filename:"%" ; \
+		echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+  DESCRIPTION   The LaTeX action starts the LaTeX compiler.\
+		Drop a file with type TEX onto it and that file will be loaded.
+}
+
+ACTION LaTeX
+{
+  LABEL         LaTeX
+  ICON          latex
+  ARG_TYPE      TEX
+  ARG_COUNT     1
+  TYPE          COMMAND
+  WINDOW_TYPE   PERM_TERMINAL
+  EXEC_STRING   sh -c ' \
+		latex "%Arg_1%" ; \
+		echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+  DESCRIPTION   The LaTeX action starts the LaTeX compiler.\
+		Drop a file with type TEX onto it and that file will be loaded.
+}
+
+

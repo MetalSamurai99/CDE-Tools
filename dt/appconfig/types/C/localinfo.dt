@@ -1,0 +1,25 @@
+# Action to get to cheat sheets and other local information
+# tkld 10/96
+
+ACTION CheatSheets
+{
+	LABEL	Cheat Sheets
+	ICON	Dthelp
+	TYPE	COMMAND
+	WINDOW_TYPE NO_STDIO
+	EXEC_STRING	sh -c "netscape -remote 'openURL(http://www.cogsci.ed.ac.uk/local/computing/cheats/)' || \
+		 netscape http://www.cogsci.ed.ac.uk/local/computing/cheats/"
+	DESCRIPTION Open the web version of the Computing Cheat Sheets.
+}
+
+ACTION CogSemBookings
+{
+	LABEL	CogSci Seminar Room Bookings
+	ICON	DtCM
+	TYPE	COMMAND
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	dtcm -c cogsem@burns -v week
+	DESCRIPTION	View CogSci Seminar Room bookings using \
+	Calendar Manager.
+}
+

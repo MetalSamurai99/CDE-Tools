@@ -1,0 +1,34 @@
+# Actions for MPEG files
+
+ACTION Mpeg_Play
+{
+     LABEL         Mpeg Play
+     TYPE          COMMAND
+     ARG_COUNT     0
+     ARG_TYPE	   MPEG
+     EXEC_STRING   mpeg_play "%(File)Arg_1"Movie To Play:"%"
+     ICON          Movie
+     WINDOW_TYPE   NO_STDIO
+     DESCRIPTION   Play an MPEG movie
+}
+
+ACTION Mpeg_Play
+{
+     LABEL         Mpeg Play
+     TYPE          COMMAND
+     ARG_TYPE      MPEG
+     ARG_COUNT     1
+     EXEC_STRING   mpeg_play "%Arg_1%"
+     ICON          Movie
+     WINDOW_TYPE   NO_STDIO
+     DESCRIPTION   Play an MPEG movie
+}
+
+ACTION Open
+{
+	LABEL	Open
+	ARG_TYPE	MPEG
+	TYPE	MAP
+	MAP_ACTION	Mpeg_Play
+}
+

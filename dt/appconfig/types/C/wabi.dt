@@ -1,0 +1,79 @@
+######################################################################
+#
+# @(#)wabi.dt	1.3 - 96/02/01
+#
+# Copyright 1996 Sun Microsystems, Inc. All Rights Reserved
+#
+######################################################################
+
+ACTION Wabi
+{
+     LABEL         Wabi
+     TYPE          COMMAND
+     EXEC_STRING   /opt/SUNWwabi/bin/wabi
+     ICON          wabi
+     WINDOW_TYPE   NO_STDIO
+     DESCRIPTION   This action invokes Wabi, which allows you to run various MS Windows applications.
+}
+
+######################################################################
+
+ACTION WinExecute
+{
+	LABEL		WinExecute
+	TYPE		COMMAND	
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	/opt/SUNWwabi/bin/wabi -s "%Arg_1%"
+	DESCRIPTION	This is a MS Windows application
+}
+
+DATA_ATTRIBUTES WIN_EXECUTABLE
+{
+	ACTIONS		WinRun
+        ICON		Dtexec
+        IS_EXECUTABLE	true
+        COPY_TO_ACTION  WinExecute
+        MIME_TYPE	application/octet-stream
+	SUNV3_TYPE	default-app
+        MEDIA           _DT_DATA
+	DESCRIPTION	This file contains a MS Windows program that can be executed.
+}
+
+DATA_CRITERIA EXECUTABLE1
+{
+	DATA_ATTRIBUTES_NAME WIN_EXECUTABLE
+	MODE		f
+	NAME_PATTERN	*.exe
+}
+
+ACTION WinRun
+{
+        LABEL           Run
+        ARG_TYPE        WIN_EXECUTABLE
+        TYPE            MAP
+        MAP_ACTION      WinExecute
+}
+
+
+######################################################################
+
+ACTION WabiOpen
+{
+	TYPE		COMMAND
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	/opt/SUNWwabi/bin/wabi -s w:/wbin/wabidti.exe open "%Arg_1%"
+	LABEL		Open
+}
+
+ACTION WabiPrint
+{
+	TYPE		COMMAND
+	WINDOW_TYPE	NO_STDIO
+	EXEC_STRING	/opt/SUNWwabi/bin/wabi -s w:/wbin/wabidti.exe print "%Arg_1%"
+	LABEL		Print
+}
+
+
+
+
+

@@ -1,0 +1,35 @@
+/* XPM */
+static char * latex_s_pm[] = {
+/* width height ncolors cpp [x_hot y_hot] */
+"24 24 5 1 -1 -1",
+/* colors */
+" 	s none	m none	c none",
+".	s topShadowColor	m white	c #bdbdbdbdbdbd",
+"X	s background	m black	c #949494949494",
+"o	s iconColor1	m black	c black",
+"O	s bottomShadowColor	m black	c #636363636363",
+/* pixels */
+"                        ",
+"                        ",
+"                        ",
+"                        ",
+"........................",
+"XXXXXXXXXXXXXXXXXXXXXXXX",
+"oooXXoXoooooXXXoooXXXooX",
+"XoXXXoXoXoXoXXXXooXXXoXX",
+"XoXXoXoXXoXoooooXooXoXXX",
+"XoXXoooXXoXXoXXoXXooXXXX",
+"XoXooXooXoXXoXoXXXoooXXX",
+"XoXXoXXXXoXXoooXXoXXooXX",
+"oooooXXXoooXoXoooXXXoooX",
+"XXXXXXXXXXXXoXXoXXXXXXXX",
+"XXXXXXXXXXXoooooXXXXXXXX",
+"XXXXXXXXXXXXXXXXXXXXXXXX",
+"OOOOOOOOOOOOOOOOOOOOOOOO",
+"                        ",
+"                        ",
+"                        ",
+"                        ",
+"                        ",
+"                        ",
+"                        "};

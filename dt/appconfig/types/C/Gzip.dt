@@ -1,0 +1,76 @@
+# Actions and types for Gzipped data
+# tkld 10/96
+
+DATA_ATTRIBUTES GZIPPED
+{
+        ACTIONS         Gunzip
+        ICON		Dtcmprs
+        NAME_TEMPLATE	%s.gz
+        MIME_TYPE	application/zip
+        SUNV3_TYPE      compress
+	DESCRIPTION	This is a file that has been compressed by \
+                        the gzip command to take up less space.  Its \
+                        data type is named GZIPPED.  GZIPPED files \
+                        have names ending with '.gz'.
+}
+DATA_CRITERIA GZIPPED1
+{
+	DATA_ATTRIBUTES_NAME GZIPPED
+        MODE            f
+        NAME_PATTERN    *.gz
+}
+ACTION Print
+{
+        LABEL           Print
+        ARG_TYPE        GZIPPED
+        TYPE            MAP
+        MAP_ACTION      NoPrint
+}
+
+ACTION Gunzip
+{
+	LABEL		Gunzip File
+        TYPE            COMMAND
+        WINDOW_TYPE     PERM_TERMINAL
+        EXEC_STRING     sh -c ' \
+	                gunzip -vf "%(File)Arg_1%" %(File)Args% 2>&1 | \
+                           \${PAGER:-more}; \
+	    echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The Gunzip File action accepts one or more \
+                        files that have been gzipped using the \
+                        'gzip' command and uncompresses them.  It uses \
+                        the 'gunzip' command.
+}
+
+ACTION Gzip
+{
+	LABEL		Gzip File
+        ICON		Dtcmprs
+        TYPE            COMMAND
+        WINDOW_TYPE     PERM_TERMINAL
+        EXEC_STRING     sh -c ' \
+	                 gzip -vf "%(File)Arg_1"File to Compress:"%" \
+                         %(File)Args% 2>&1 | \${PAGER:-more}; \
+	    echo "\\n*** Select Close or Exit from the window menu to close this window ***"'
+	DESCRIPTION	The Gzip File (Gzip) action accepts \
+                        one or more files and compresses them using the \
+                        'gzip' command.
+}
+
+#######
+
+ACTION Gunzip
+{
+        LABEL           Gunzip File
+        ICON		Dtcmprs
+        ARG_COUNT       0
+        TYPE            COMMAND
+        WINDOW_TYPE     NO_STDIO
+        EXEC_STRING     /usr/dt/bin/dtaction Gunzip \
+                            "%(File)Arg_1"File to Gunzip:"%"
+        DESCRIPTION     The Gunzip File action accepts one or more \
+                        files that have been compressed using the \
+                        'gzip' command and uncompresses them.  It uses \
+                        the 'gunzip' command.
+}
+

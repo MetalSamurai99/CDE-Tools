@@ -1,0 +1,35 @@
+/* XPM */
+static char * Html_s_pm[] = {
+/* width height ncolors cpp [x_hot y_hot] */
+"17 22 7 1 0 0",
+/* colors */
+" 	s none	m none	c none",
+".	s iconColor2	m white	c white",
+"X	s iconGray8	m black	c #212121212121",
+"o	s iconGray1	m white	c #dededededede",
+"O	s iconColor1	m black	c black",
+"+	s iconGray5	m black	c #737373737373",
+"@	s iconGray3	m white	c #adadadadadad",
+/* pixels */
+"                 ",
+"                 ",
+"                 ",
+"                 ",
+"  .............X ",
+"  .ooooooooooooX ",
+"  .ooOoOoOoOoooX ",
+"  .oOooOOOooOooX ",
+"  .ooOoOoOoOoooX ",
+"  .ooooooooooooX ",
+"  .ooooooooooooX ",
+"  .o++@++o+ooooX ",
+"  .ooooooooooooX ",
+"  .o+++@+++++ooX ",
+"  .ooooooooooooX ",
+"  .o+++++o+++ooX ",
+"  .ooooooooooooX ",
+"  .ooooooooooooX ",
+"  .ooooooooooooX ",
+"  XXXXXXXOOOOOOO ",
+"                 ",
+"                 "};
